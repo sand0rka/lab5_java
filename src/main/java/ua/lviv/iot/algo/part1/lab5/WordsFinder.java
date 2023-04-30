@@ -6,9 +6,9 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class WordsFinder {
+public final class WordsFinder {
 
-    public static List<String> findWordsAtSecondLastPosition(final String text) {
+    public static List<String> findWordAtSecondLastPosition(final String text) {
         List<String> wordsAtSecondLastPosition = new ArrayList<>();
 
         String pattern = "[^.!?]+[.!?]";
@@ -17,7 +17,7 @@ public class WordsFinder {
 
         while (matcher.find()) {
             String sentence = matcher.group();
-            String[] words = sentence.trim().split("\\s+");
+            String[] words = sentence.split("\s+");
             if (words.length > 1) {
                 String secondLastWord = words[words.length - 2];
                 wordsAtSecondLastPosition.add(secondLastWord);
@@ -28,14 +28,14 @@ public class WordsFinder {
         return wordsAtSecondLastPosition;
     }
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    public static void main(final String[] args) {
+        Scanner scanner = new Scanner(System.in, "UTF-8");
         System.out.print("Enter a string: ");
         String input = scanner.nextLine();
 
-        List<String> words = findWordsAtSecondLastPosition(input);
+        List<String> words = findWordAtSecondLastPosition(input);
         System.out.println("Words at the second-to-last position: ");
-        for (String word : words) {
+        for (var word : words) {
             System.out.println(word);
         }
 
